@@ -70,10 +70,26 @@ class Blog(models.Model):
     def save_blog(self):
         self.save()
 
+#This is the model for our different sports available or supported in the venue
+class Sport(models.Model):
+    sportName = models.CharField(max_length=100)
+    admin = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.sportName
+
+    def save_sport(self):
+        self.save()
+
+    def delete_sport(self):
+        self.delete()
+
+
 #This is our model for lessons available post olympics
 class Lesson(models.Model):
     lessonName = models.CharField(max_length=100)
     lessonDescription = models.CharField(max_length=2000)
+    lessonSport = models.ForeignKey(Sport, null=True, on_delete=models.CASCADE)
     lessonVenue = models.ForeignKey(Venue, null=True, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
