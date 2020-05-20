@@ -39,3 +39,20 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
+
+#This is our model for blogs created by a user profile
+class Blog(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length=2000)
+    venue = models.ForeignKey(Venue, null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    postDate = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-postDate']
+
+    def save_blog(self):
+        self.save()
