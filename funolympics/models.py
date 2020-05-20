@@ -2,6 +2,21 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+#This is the model for our venue
+class Venue(models.Model):
+    venueName = models.CharField(max_length=100)
+    venueLocation = models.CharField(max_length=50, null=True)
+    venueCapacity = models.PositiveSmallIntegerField(null=True)
+    admin = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.venueName
+
+    def save_venue(self):
+        self.save()
+
+    def delete_venue(self):
+        self.delete()
 
 #This is our model for user profile
 class Profile(models.Model):
@@ -21,26 +36,11 @@ class Profile(models.Model):
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
 
-#This is the model for our venue
-class Venue(models.Model):
-    venueName = models.CharField(max_length=100)
-    venueLocation = models.CharField(max_length=50, null=True)
-    venueCapacity = models.PositiveSmallIntegerField(null=True)
-    admin = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-
-    def __str__(self):
-        return self.venueName
-
-    def save_venue(self):
-        self.save()
-
-    def delete_venue(self):
-        self.delete()
 
 #This is our model for facilities located in the venues.    
 class Facility(models.Model):
     facilityName = models.CharField(max_length=100)
-    facilityLocation = venue = models.ForeignKey(Venue, null=True, blank=True, on_delete=models.CASCADE)
+    facilityLocation = models.ForeignKey(Venue, null=True, blank=True, on_delete=models.CASCADE)
     facilityRoom = models.PositiveSmallIntegerField(null=True)
 
     def __str__(self):
@@ -91,13 +91,11 @@ class Lesson(models.Model):
     lessonDescription = models.CharField(max_length=2000)
     lessonSport = models.ForeignKey(Sport, null=True, on_delete=models.CASCADE)
     lessonVenue = models.ForeignKey(Venue, null=True, on_delete=models.CASCADE)
+    leesonFacility = models.ForeignKey(Facility, null=True, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.title
-
-    class Meta:
-        ordering = ['-postDate']
 
     def save_lesson(self):
         self.save()
