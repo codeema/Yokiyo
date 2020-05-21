@@ -23,5 +23,6 @@ def index(request):
     facility = Facility.objects.all()
     sport = Sport.objects.all()
     lesson = Lesson.objects.all()
-    return render(request, 'index.html', {"facility": facility,"blog": blog[::-1], "sport": sport[::-1], "lesson":lesson} )
+    return render(request, 'index.html' )
 
+# {"facility": facility,"blog": blog[::-1], "sport": sport[::-1], "lesson":lesson}
