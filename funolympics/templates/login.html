@@ -1,4 +1,4 @@
-{%extends "base.html"%} 
+{%extends "base.html"%}
 
 {% block content %}
 {{block.super}}
@@ -11,7 +11,7 @@
             {% if form.errors %}
             <p> Password or Username is incorrect </p>
             {% endif %}
-            
+
             <div class="panel panel-default">
 
                 <div class="panel-heading">
@@ -19,8 +19,8 @@
                 </div>
                 <div class="panel-body">
 
-                    <form  method="post">
-                        {% csrf_token %} 
+                    <form method="post">
+                        {% csrf_token %}
                         {{ form }}
 
                         <!-- <div class="form-group">
