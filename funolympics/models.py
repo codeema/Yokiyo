@@ -71,7 +71,6 @@ class Blog(models.Model):
 #This is the model for our different sports available or supported in the venue
 class Sport(models.Model):
     sportName = models.CharField(max_length=100)
-    admin = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.sportName
