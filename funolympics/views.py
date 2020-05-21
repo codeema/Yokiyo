@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import Profile, Blog, Facility, Lesson, Sport
+from .models import Profile, Blog, Facility, Lesson, Sport, Comment
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
-# from .forms import SignUpForm, NewBusinessForm, NewPostForm, EditProfile, NewHoodForm
+from .forms import RegistrationForm, NewVenueForm, NewBlogForm, EditProfile, NewFacilityForm, NewSportForm, NewCommentForm
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.auth import login
 from django.contrib.auth.models import User

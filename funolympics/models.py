@@ -68,6 +68,13 @@ class Blog(models.Model):
     def save_blog(self):
         self.save()
 
+class Comment(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+	comment_id = models.ForeignKey(Blog, on_delete=models.CASCADE, null=True)
+	status = models.CharField(max_length=2000)
+	postDate = models.DateTimeField(auto_now_add=True)
+
+
 #This is the model for our different sports available or supported in the venue
 class Sport(models.Model):
     sportName = models.CharField(max_length=100)
