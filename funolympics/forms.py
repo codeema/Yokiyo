@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Venue, Sport, Profile, Blog, Location, Facility, Comment
 
-#This is a sign up form for creating a user
+# User Creation Form
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(
         max_length=254, help_text='Required. Inform a valid email address.')
@@ -12,32 +12,38 @@ class RegistrationForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
+# Venue Creation Form
 class NewVenueForm(forms.ModelForm):
     class Meta:
         model = Hood
         fields = ('venueName', 'venueLocation', 'venueCapacity', 'admin')
 
+# Blog Creation Form
 class NewBlogForm(forms.ModelForm):
     class Meta:
         model = Blog
         exclude = ['venue', 'user']
         fields = ('venueName', 'venueLocation', 'venueCapacity', 'admin')
 
+# Profile Creation Form
 class EditProfile(forms.ModelForm):
     class Meta:
         model = Profile
         exclude = ['user', 'email_confirmed']
 
+# Facility Creation Form
 class NewFacilityForm(forms.ModelForm):
     class Meta:
         model = Facility
         exclude = ['venue', 'user']
 
+# Sport Creation Form
 class NewSportForm(forms.ModelForm):
     class Meta:
         model = Sport
         exclude = ['venue', 'user']
 
+# Comment Creation Form
 class NewCommentForm(forms.ModelForm):
 	class Meta:
         model = Comment
