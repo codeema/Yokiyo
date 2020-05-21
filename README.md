@@ -21,8 +21,8 @@ This app that allows users to post their neigb=hbourhood and see others posted b
 
 ## Getting Started
 
-These instructions will help get you started and your copy of the project up and running on your local machine for development and testing purposes. 
-This has also been deployed on a live development server for this project. The notes on how to deploy your own project to a live server will be in the link below.
+These instructions will help get you started on your own copy of the project up and running on your local machine for development and testing purposes. 
+This has also been deployed on a live development server for this project. The notes on how to deploy your own project to a live server will be in the link below.	
 
 ### Prerequisites
 
@@ -89,6 +89,13 @@ No bugs have so far been reported as of 22nd of May 2020. If you find any do not
 * [BOOTSTRAP](https://getbootstrap.com/)- Bootstrap is an open source toolkit for developing with HTML,CSS and JS.
 * [POSTGRESQL](https://www.postgresql.org/) - Used as our relational database management system for our  Project.
 * [JQuery](https://www.jquery.com/) - A javascript library used for addding javascript functionality to webpages.
+* [HEROKU](https://www.jquery.com/) - Heroku is a cloud platform as a service which I used this as a development server.
+
+## Future Implementations
+
+* [SEO Optimization](#) - Optimise the site for good ads and high list on search engines.
+* [Payment Gateway](#) - Optimise the site to be able to transact payments for the lessons online.
+* [Booking Engine](#) - Optimise the booking system. Add to calender and give notifications.
 
 ## Contributors
 
