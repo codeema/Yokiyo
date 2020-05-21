@@ -1,6 +1,8 @@
 {%extends "base.html"%} 
-{% load bootstrap4 %} 
+
 {% block content %}
+{{block.super}}
+
 <div class="container">
     <div class="row">
         <!-- Empty div -->
@@ -19,7 +21,7 @@
 
                     <form  method="post">
                         {% csrf_token %} 
-                        {% bootstrap_form form%}
+                        {{ form }}
 
                         <!-- <div class="form-group">
                             <input type="submit" class="btn btn-primary btn-sm" value="Login">
