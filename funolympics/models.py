@@ -2,12 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
 #This is the model for our venue
 class Venue(models.Model):
     venueName = models.CharField(max_length=100)
     venueLocation = models.CharField(max_length=50, null=True)
-    venueCapacity = models.PositiveSmallIntegerField(null=True)
-    admin = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    venueCapacity = models.PositiveSmallIntegerField(null=True)	
 
     def __str__(self):
         return self.venueName
@@ -36,7 +36,6 @@ class Profile(models.Model):
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
 
-
 #This is our model for facilities located in the venues.    
 class Facility(models.Model):
     facilityName = models.CharField(max_length=100)
@@ -51,7 +50,6 @@ class Facility(models.Model):
 
     def delete_facility(self):
         self.delete()
-
 
 #This is our model for blogs created by a user profile
 class Blog(models.Model):
@@ -84,15 +82,13 @@ class Sport(models.Model):
     def delete_sport(self):
         self.delete()
 
-
 #This is our model for lessons available post olympics
 class Lesson(models.Model):
     lessonName = models.CharField(max_length=100)
     lessonDescription = models.CharField(max_length=2000)
     lessonSport = models.ForeignKey(Sport, null=True, on_delete=models.CASCADE)
     lessonVenue = models.ForeignKey(Venue, null=True, on_delete=models.CASCADE)
-    leesonFacility = models.ForeignKey(Facility, null=True, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    lessonFacility = models.ForeignKey(Facility, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
