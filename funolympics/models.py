@@ -72,7 +72,7 @@ class Blog(models.Model):
         self.delete()
 
     @classmethod
-    def display_blogs(self):
+    def display_blogs(cls):
         blogs = cls.objects.all()
         return blogs
 
@@ -111,7 +111,7 @@ class Lesson(models.Model):
     def __str__(self):
         return self.title
 
-    def save_lblogesson(self):
+    def save_lesson(self):
         self.save()
 
 
