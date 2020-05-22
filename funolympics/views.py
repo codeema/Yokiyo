@@ -47,7 +47,7 @@ def index(request):
 @login_required
 def profile(request):
   current_user = request.user
-  
+
   return render(request,'profile.html',{"current_user":current_user})
 
 # posts
@@ -55,13 +55,13 @@ def profile(request):
 @login_required
 def post(request):
   if request.method == 'POST':
-    post_form = NewBlogForm(request.POST,request.FILES) 
+    post_form = NewBlogForm(request.POST,request.FILES)
     if post_form.is_valid():
       the_post = post_form.save(commit = False)
       the_post.user = request.user
       the_post.venue = request.user.profile.venue
       the_post.save()
-  return redirect('index')
+  return render(request,'new-post.html')
 
 
 @login_required
@@ -73,7 +73,5 @@ def commenting(request,blog_id):
       comment = c_form.save(commit = False)
       comment.user = request.user
       comment.comment_id = blog
-      comment.save() 
+      comment.save()
   return redirect('index')
-
-
