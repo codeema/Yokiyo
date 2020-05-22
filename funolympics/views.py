@@ -15,6 +15,20 @@ from django.contrib import messages
 
 # Create your views here.
 
+def register(request):
+  if request.method == 'POST':
+    form = RegistrationForm(request.POST)
+    if form.is_valid():
+      form.save()
+      email = form.cleaned_data['email']
+      username = form.cleaned_data.get('username')
+
+      messages.success(request,f'Account for {username} created,you can now login')
+      return redirect('login')
+  else:
+    form = RegistrationForm()
+  return render(request,'registration.html',{"form":form})
+
 def index(request):
     '''
     View function that displays the homepage and all its contents including social ammenitits and hoods notices
