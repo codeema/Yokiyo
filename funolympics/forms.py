@@ -1,13 +1,13 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Venue, Sport, Profile, Blog, Location, Facility, Comment
+from .models import Venue, Sport, Profile, Blog, Facility, Comment
+
+# Location
 
 # User Creation Form
 class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(
-        max_length=254, help_text='Required. Inform a valid email address.')
-
+    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
@@ -15,15 +15,15 @@ class RegistrationForm(UserCreationForm):
 # Venue Creation Form
 class NewVenueForm(forms.ModelForm):
     class Meta:
-        model = Hood
-        fields = ('venueName', 'venueLocation', 'venueCapacity', 'admin')
+        model = Venue
+        fields = ('venueName', 'venueLocation', 'venueCapacity')
 
 # Blog Creation Form
 class NewBlogForm(forms.ModelForm):
     class Meta:
         model = Blog
         exclude = ['venue', 'user']
-        fields = ('venueName', 'venueLocation', 'venueCapacity', 'admin')
+        fields = ('title', 'description')
 
 # Profile Creation Form
 class EditProfile(forms.ModelForm):
@@ -45,7 +45,7 @@ class NewSportForm(forms.ModelForm):
 
 # Comment Creation Form
 class NewCommentForm(forms.ModelForm):
-	class Meta:
+    class Meta:
         model = Comment
         exclude = ['venue', 'user']
 		

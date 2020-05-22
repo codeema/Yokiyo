@@ -60,7 +60,7 @@ class Blog(models.Model):
     postDate = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.title
+        return self.titlemodels.Mode
 
     class Meta:
         ordering = ['-postDate']
@@ -101,3 +101,12 @@ class Lesson(models.Model):
 
     def save_lesson(self):
         self.save()
+
+
+class schedule(models.Model):
+    scheduleVenue = models.ForeignKey(Venue, null=True, on_delete=models.CASCADE)
+    scheduleDate = models.DateTimeField(auto_now_add=True)
+    scheduleFacility = models.ForeignKey(Facility, null=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.scheduleVenue
