@@ -1,1 +1,33 @@
-am working !!!
+{%extends 'base.html'%}
+{% block content %}
+
+<form action="{% url 'post' %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <fieldset class="form-group">
+    {{post}}
+  </fieldset>
+  <div class="form-group">
+    <a href="{% url 'post' %}">
+      <button class="btn btn-outline-info" type="submit">Post</button>
+    </a>
+  </div>
+</form>
+
+{% if blog %}
+{% for n in blog %}
+
+
+{{n.title}}
+{{n.description}}
+{{n.postDate}}
+<form action="{% url 'commenting' blog_id=n.id %}" method="post">
+  {% csrf_token %}
+  <fieldset class="form-group">
+    {{comment_form}}
+  </fieldset>
+</form>
+
+{% endfor %}
+{% endif %}
+
+{% endblock %}

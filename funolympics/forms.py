@@ -47,5 +47,5 @@ class NewSportForm(forms.ModelForm):
 class NewCommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        exclude = ['venue', 'user']
+        exclude = ['venue', 'user','comment_id']
 		

@@ -37,7 +37,9 @@ def index(request):
     facility = Facility.objects.all()
     sport = Sport.objects.all()
     lesson = Lesson.objects.all()
-    return render(request, 'index.html',{"facility": facility,"blog": blog[::-1], "sport": sport[::-1], "lesson":lesson} )
+    post_form = NewBlogForm()
+    comment_form = NewCommentForm()
+    return render(request, 'index.html',{"comment_form":comment_form,"post":post_form,"facility": facility,"blog": blog[::-1], "sport": sport[::-1], "lesson":lesson} )
 
 
 # profile view
@@ -47,4 +49,30 @@ def profile(request):
   current_user = request.user
   
   return render(request,'profile.html',{"current_user":current_user})
+
+# posts
+
+@login_required
+def post(request):
+  if request.method == 'POST':
+    post_form = NewBlogForm(request.POST,request.FILES) 
+    if post_form.is_valid():
+      the_post = post_form.save(commit = False)
+      the_post.user = request.user
+      the_post.save()
+  return redirect('index')
+
+
+@login_required
+def commenting(request,blog_id):
+  blog = Blog.objects.filter(pk = blog_id).first()
+  if request.method == 'POST':
+    c_form = NewCommentForm(request.POST)
+    if c_form.is_valid():
+      comment = c_form.save(commit = False)
+      comment.user = request.user
+      comment.comment_id = blog
+      comment.save() 
+  return redirect('index')
+
 

@@ -60,7 +60,7 @@ class Blog(models.Model):
     postDate = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.titlemodels.Mode
+        return self.title
 
     class Meta:
         ordering = ['-postDate']
