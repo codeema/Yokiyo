@@ -2,6 +2,32 @@
 {% block content %}
 
 {% load static %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+.basket-icon{
+  float: right;
+  position: relative;
+  z-index: 1;
+}
+.basket button{
+  border-radius: 10px;
+  cursor: pointer;
+}
+.zoom{
+    position: absolute;
+    top: 180px;
+    right: 50%;
+    width: 40px;
+    opacity: 0;
+    animation: zoom 1s ease forwards;
+}
+@keyframes zoom{
+    0%{opacity: 0}
+    50%{opacity: 1}
+    100%{opacity: 0; right: 40px;}
+}
+
+</style>
 
 <div class="container-full text-center">
     <br>
@@ -27,10 +53,8 @@
                     <p class="card-text">{{l.lessonVenue}}</p>
                     <p class="card-text">{{l.lessonFacility}}</p>
                 </div>
-                <div class="card-footer">
-                    <p class="card-text">
-                        <a href="#">Register for a class</a>
-                    </p>
+                <div class="card-footer basket">
+                    <button>Add to Basket</button>
                 </div>
             </div>
         </div>
@@ -39,4 +63,21 @@
     <br>
 </div>
 
+
+<script>
+    
+    $("button").on("click", function(){
+ 
+        $(this).closest(".card")
+        .find("img")
+        .clone()
+        .addClass("zoom")
+        .appendTo("body");
+        setTimeout(function(){
+            $(".zoom").remove();
+        }, 1000);
+    });
+</script>
+
 {% endblock %}
+
