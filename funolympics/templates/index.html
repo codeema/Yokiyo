@@ -48,17 +48,17 @@
 	</div>
 
     <div class="container">
-    <hr>
+    <br>
         <div class="row">
             <div class="col-md-12 text-center">
-                <h2>FACILITIES</h2>
+                <h3>FACILITIES</h3>
             </div>
             {% for facilitydisplay in facility %}
             <div class="col-sm-3">
               <div class="card">
                   <img src="static/images/stadium1.jpg" class="card-img-top" alt="...">
                   <div class="card-header">
-                      <h4 class="card-title">{{facilitydisplay.facilityName|upper}}</h4>
+                      <h5 class="card-title">{{facilitydisplay.facilityName|upper}}</h5>
                   </div>
                 <div class="card-body">
                   <p class="card-text"> Located at: <strong> {{facilitydisplay.facilityLocation}} </strong> </p>
@@ -72,34 +72,41 @@
         </div>
     </div
 
-<form action="{% url 'post' %}" method="POST" enctype="multipart/form-data">
-  {% csrf_token %}
-  <fieldset class="form-group">
-    {{post}}
-  </fieldset>
-  <div class="form-group">
-    <a href="{% url 'post' %}">
-      <button class="btn btn-outline-info" type="submit">Post</button>
-    </a>
-  </div>
-</form>
+    <div class="container">
+    <br>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3>BLOG</h3>
+            </div>
+            {% if blog %}
+            {% for n in blog %}
+            <div class="col-sm-4">
+              <div class="card">
+                  <!-- <img src="static/images/stadium1.jpg" class="card-img-top" alt="..."> -->
+                  <div class="card-header">
+                      <h5 class="card-title">{{n.title}}</h5>
+                      <p class="card-text">{{n.postDate}}</p>
+                  </div>
+                <div class="card-body">
+                  <p class="card-text">{{n.description}}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="#">Comments</a>
+                </div>
+              </div>
+            </div>
+            <!-- {% for comment in n.all_comments|slice:"2" %}
 
-{% if blog %}
-{% for n in blog %}
+            <p class="ml-3"><span class="font-weight-bold">{{comment.user.username}}</span> {{comment.status}}</p>
+            {% endfor %}
 
+            <form action="{% url 'commenting' blog_id=n.id %}" method="post">
+              {% csrf_token %}
+              <fieldset class="form-group">comment -->
 
-{{n.title}}
-{{n.description}}
-{{n.postDate}}
-{% for comment in n.all_comments|slice:"2" %}
-
-<p class="ml-3"><span class="font-weight-bold">{{comment.user.username}}</span> {{comment.status}}</p>
-{% endfor %}
-<form action="{% url 'commenting' blog_id=n.id %}" method="post">
-  {% csrf_token %}
-  <fieldset class="form-group">comment
-
-{% endfor %}
-{% endif %}
+            {% endfor %}
+            {% endif %}
+        </div>
+    <br>
 
 {% endblock %}
