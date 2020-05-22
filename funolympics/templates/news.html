@@ -1,0 +1,48 @@
+{%extends 'base.html'%}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+<hr>
+<div class="row">
+    <h3 style="text-align: center">News Notices</h3>
+    {% for blog in blogs %}
+    <div class="col-md-4">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{blog.title|upper}}</h3>
+            </div>
+            <div class="panel-body">
+                {{blog.description}}
+            </div>
+            <div class="panel-footer">{{blog.postDate}}</div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+</div>
+
+<div class="container">
+<hr>
+    <div class="row">
+        <h3 style="text-align: center">Facility Notices</h3>
+        {% for facility in facilities %}
+        <div class="col-md-4">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{facility.title|upper}}</h3>
+                </div>
+                <div class="panel-body">
+                    {{facility.description}}
+                </div>
+                <div class="panel-footer">{{facility.postDate}}</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
