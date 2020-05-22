@@ -68,6 +68,14 @@ class Blog(models.Model):
     def save_blog(self):
         self.save()
 
+    def delete_blog(self):
+        self.delete()
+
+    @classmethod
+    def display_blogs(self):
+        blogs = cls.objects.all()
+        return blogs
+
     @property
     def all_comments(self):
         return self.comments.all()
@@ -103,7 +111,7 @@ class Lesson(models.Model):
     def __str__(self):
         return self.title
 
-    def save_lesson(self):
+    def save_lblogesson(self):
         self.save()
 
 
@@ -114,3 +122,11 @@ class schedule(models.Model):
 
     def __str__(self):
         return self.scheduleVenue
+
+
+class Bookings(models.Model):
+    lessonBooked = models.ForeignKey(Lesson, null=True, on_delete=models.CASCADE,related_name='booked')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.user.username

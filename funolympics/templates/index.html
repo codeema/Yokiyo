@@ -21,14 +21,12 @@
 {{n.description}}
 {{n.postDate}}
 {% for comment in n.all_comments|slice:"2" %}
+
 <p class="ml-3"><span class="font-weight-bold">{{comment.user.username}}</span> {{comment.status}}</p>
 {% endfor %}
 <form action="{% url 'commenting' blog_id=n.id %}" method="post">
   {% csrf_token %}
-  <fieldset class="form-group">
-    {{comment_form}}
-  </fieldset>
-</form>
+  <fieldset class="form-group">comment
 
 {% endfor %}
 {% endif %}
