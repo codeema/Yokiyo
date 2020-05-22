@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Profile, Blog, Facility, Lesson, Sport, Comment
+from .models import Profile, Blog, Facility, Lesson, Sport, Comment,Booking
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, Http404, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.forms.models import model_to_dict
 
 
 # Create your views here.
@@ -90,3 +91,21 @@ def news(request):
     sport = Sport.objects.all()
     lesson = Lesson.objects.all()
     return render(request, 'news.html',{"facility": facility, "blog": blog[::-1], "sport": sport[::-1], "lesson":lesson} )
+
+
+@login_required
+def booking(request,lesson_id):
+  if request.method == 'GET':
+    my_lesson = Lesson.objects.get(pk = lesson_id)
+    user = request.user
+    booking = Booking(lessonBooked = my_lesson, user = user)
+    booking.save()
+    return JsonResponse({'success':True,"lesson":lesson_id})
+
+def my_booking(request):
+  if request.method == 'GET':
+    user = request.user
+    my_lessons = Booking.objects.filter(user = user).distinct('lessonBooked_id')
+    data = {k:v for k, v in [(Lesson.objects.get(pk = i.lessonBooked_id).lessonName, Lesson.objects.get(pk = i.lessonBooked_id).lessonDescription) for i in my_lessons] }
+    print(data)
+    return JsonResponse({'success':True,"lessons":data})

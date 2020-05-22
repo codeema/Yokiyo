@@ -4,29 +4,45 @@
 {% load static %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
-.basket-icon{
-  float: right;
-  position: relative;
-  z-index: 1;
-}
-.basket button{
-  border-radius: 10px;
-  cursor: pointer;
-}
-.zoom{
-    position: absolute;
-    top: 180px;
-    right: 50%;
-    width: 40px;
-    opacity: 0;
-    animation: zoom 1s ease forwards;
-}
-@keyframes zoom{
-    0%{opacity: 0}
-    50%{opacity: 1}
-    100%{opacity: 0; right: 40px;}
-}
+    .basket-icon {
+        float: right;
+        position: relative;
+        z-index: 1;
+    }
 
+    .basket-icon img {
+        height: 40%;
+        width: 40%;
+    }
+
+    .basket button {
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .zoom {
+        position: absolute;
+        top: 180px;
+        right: 50%;
+        width: 30px;
+        opacity: 0;
+        animation: zoom 1s ease forwards;
+    }
+
+    @keyframes zoom {
+        0% {
+            opacity: 0
+        }
+
+        50% {
+            opacity: 1
+        }
+
+        100% {
+            opacity: 0;
+            right: 40px;
+        }
+    }
 </style>
 
 <div class="container-full text-center">
@@ -35,7 +51,7 @@
     <p>If intrested clickthelink belowa lesson to register then proceed to cart.</p>
     <br>
 </div>
-<div class="basket-icon"><img src="static/images/basket.png"></div>
+<div class="basket-icon"><img src="/static/images/basket.png"></div>
 
 <div class="container-full">
     <br>
@@ -43,7 +59,7 @@
         {% for l in lessons %}
         <div class="col-md-4">
             <div class="card">
-                <img src="{{l.lessonimage.url}}" class="card-img-top" alt="...">
+                <img src="/{{l.lessonimage.url}}" class="card-img-top" alt="...">
                 <div class="card-title">
                     <h4>{{l.lessonName}}</h4>
                 </div>
@@ -52,8 +68,10 @@
                     <p class="card-text">{{l.lessonSport}}</p>
                     <p class="card-text">{{l.lessonVenue}}</p>
                     <p class="card-text">{{l.lessonFacility}}</p>
+                    
                 </div>
                 <div class="card-footer basket">
+                    <input type="hidden" class="lesson_id" value="{{l.pk}}">
                     <button>Add to Basket</button>
                 </div>
             </div>
@@ -62,22 +80,66 @@
     </div>
     <br>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <ul class="chooselist">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <script>
-    
-    $("button").on("click", function(){
- 
+    'use strict'; 
+
+    $("button").on("click", function () {
+
         $(this).closest(".card")
-        .find("img")
-        .clone()
-        .addClass("zoom")
-        .appendTo("body");
-        setTimeout(function(){
+            .find("img")
+            .clone()
+            .addClass("zoom")
+            .appendTo("body");
+        setTimeout(function () {
             $(".zoom").remove();
         }, 1000);
+        var clicked = $(this)
+        var lesson = $(this).closest("div").find('input')
+        console.log(lesson.val())
+        $.get('/booking/'+lesson.val()+'',
+        function(data){
+            var choosen = 0
+            if(data.success){
+                clicked.css({"color":"green","border-color":"green"});
+                
+                // var basket = $(".basket-icon")
+                // choose += 1
+                // basket.text("1")
+            }
+        }
+        );
     });
+
+    $(".basket-icon").on("click", function () {
+        $.get('/mybookings/',
+        function(data){
+            console.log(data)
+            if(data.success){
+                console.log(data.lessons)
+                for (const [key, value] of Object.entries(data.lessons)) {
+                    console.log(key, value);
+                    $('.chooselist').html("<li><strong>"+key+"</strong>"+value+"</li>")
+            }
+            }
+        }
+        )
+    })
+
 </script>
 
 {% endblock %}
-

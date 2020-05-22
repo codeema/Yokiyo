@@ -16,6 +16,8 @@ path('post/',main_views.post,name='post'),
 path('news/',main_views.news,name='news'),
 path('lesson/',main_views.subscription,name='lesson'),
 re_path(r'^comment/(?P<blog_id>\d+)$',main_views.commenting,name='commenting'),
+re_path(r'^booking/(?P<lesson_id>\d+)$',main_views.booking,name='booking'),
+path('mybookings/',main_views.my_booking,name='my_bookings'),
 ]
 
 # if settings.DEBUG:
