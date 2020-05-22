@@ -7,7 +7,7 @@ from django.dispatch import receiver
 class Venue(models.Model):
     venueName = models.CharField(max_length=100)
     venueLocation = models.CharField(max_length=50, null=True)
-    venueCapacity = models.PositiveSmallIntegerField(null=True)	
+    venueCapacity = models.PositiveSmallIntegerField(null=True)
 
     def __str__(self):
         return self.venueName
@@ -36,7 +36,7 @@ class Profile(models.Model):
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
 
-#This is our model for facilities located in the venues.    
+#This is our model for facilities located in the venues.
 class Facility(models.Model):
     facilityName = models.CharField(max_length=100)
     facilityLocation = models.ForeignKey(Venue, null=True, blank=True, on_delete=models.CASCADE)
@@ -109,7 +109,7 @@ class Lesson(models.Model):
     lessonFacility = models.ForeignKey(Facility, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title
+        return self.lessonName
 
     def save_lesson(self):
         self.save()
