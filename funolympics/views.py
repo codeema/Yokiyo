@@ -59,6 +59,7 @@ def post(request):
     if post_form.is_valid():
       the_post = post_form.save(commit = False)
       the_post.user = request.user
+      the_post.venue = request.user.profile.venue
       the_post.save()
   return redirect('index')
 
