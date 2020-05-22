@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+{% block content %}
+
+    <div class="container-full text-center">
+        <br>
+        <h4>We have a variety of ongoing classes</h4>
+        <p>If intrested clickthelink belowa lesson to register then proceed to cart.</p>
+        <br>
+    </div>
+
+    <div class="container-full">
+        <br>
+        <div class="row">
+            {% for l in lessons %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-title">
+                        <h4>{{l.lessonName}}</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{l.lessonDescription}}</p>
+                        <p class="card-text">{{l.lessonSport}}</p>
+                        <p class="card-text">{{l.lessonVenue}}</p>
+                        <p class="card-text">{{l.lessonFacility}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-text">
+                            <a href="#">Register for a class</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <br>
+    </div>
+
+{% endblock %}

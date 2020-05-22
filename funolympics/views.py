@@ -36,10 +36,9 @@ def index(request):
     blog = Blog.objects.all()
     facility = Facility.objects.all()
     sport = Sport.objects.all()
-    lesson = Lesson.objects.all()
     post_form = NewBlogForm()
     comment_form = NewCommentForm()
-    return render(request, 'index.html',{"comment_form":comment_form,"post":post_form,"facility": facility,"blog": blog[::-1], "sport": sport[::-1], "lesson":lesson} )
+    return render(request, 'index.html',{"comment_form":comment_form,"post":post_form,"facility": facility,"blog": blog[::-1], "sport": sport[::-1]} )
 
 
 # profile view
@@ -75,3 +74,19 @@ def commenting(request,blog_id):
       comment.comment_id = blog
       comment.save()
   return redirect('index')
+
+def subscription(request):
+    sport = Sport.objects.all()
+    lessons = Lesson.objects.all()
+    facility = Facility.objects.all()
+    return render(request, 'lessons.html',{"facility": facility,"lessons": lessons[::-1], "sport": sport[::-1]} )
+
+def news(request):
+    '''
+    View function that displays the blogs on the news page and all its contents.
+    '''
+    blog = Blog.objects.all()
+    facility = Facility.objects.all()
+    sport = Sport.objects.all()
+    lesson = Lesson.objects.all()
+    return render(request, 'news.html',{"facility": facility, "blog": blog[::-1], "sport": sport[::-1], "lesson":lesson} )
