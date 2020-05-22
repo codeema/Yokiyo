@@ -16,14 +16,14 @@ class RegistrationForm(UserCreationForm):
 class NewVenueForm(forms.ModelForm):
     class Meta:
         model = Venue
-        fields = ('venueName', 'venueLocation', 'venueCapacity')
+        fields = ('venueimage','venueName', 'venueLocation', 'venueCapacity')
 
 # Blog Creation Form
 class NewBlogForm(forms.ModelForm):
     class Meta:
         model = Blog
         exclude = ['venue', 'user']
-        fields = ('title', 'description')
+       
 
 # Profile Creation Form
 class EditProfile(forms.ModelForm):

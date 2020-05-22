@@ -79,12 +79,9 @@ WSGI_APPLICATION = 'Yokiyo.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'yokiyo',
-        'USER': 'dalie',
-    'PASSWORD':'password',
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
 
 
@@ -109,10 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/3.0/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
+# https://docs.djangoprojectfound
 TIME_ZONE = 'UTC'
 
 USE_I18N = True

@@ -5,6 +5,7 @@ from django.dispatch import receiver
 
 #This is the model for our venue
 class Venue(models.Model):
+    venueimage = models.ImageField(upload_to='static/images/venueimages/')
     venueName = models.CharField(max_length=100)
     venueLocation = models.CharField(max_length=50, null=True)
     venueCapacity = models.PositiveSmallIntegerField(null=True)
@@ -22,7 +23,7 @@ class Venue(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=500, blank=True)
-    avatar = models.ImageField(upload_to='profilepic/')
+    avatar = models.ImageField(upload_to='static/images/profilepic/')
     currentLocation = models.TextField(max_length=500, blank=True)
     email = models.EmailField(max_length=254)
     venue = models.ForeignKey(Venue, null=True, blank=True, on_delete=models.CASCADE)
@@ -38,6 +39,7 @@ class Profile(models.Model):
 
 #This is our model for facilities located in the venues.
 class Facility(models.Model):
+    facilityimage = models.ImageField(upload_to='static/images/facilityimages/')
     facilityName = models.CharField(max_length=100)
     facilityLocation = models.ForeignKey(Venue, null=True, blank=True, on_delete=models.CASCADE)
     facilityRoom = models.PositiveSmallIntegerField(null=True)
@@ -55,6 +57,7 @@ class Facility(models.Model):
 class Blog(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=2000)
+    blogimage = models.ImageField(upload_to='static/images/blogimages/')
     venue = models.ForeignKey(Venue, null=True, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     postDate = models.DateTimeField(auto_now_add=True)
@@ -90,6 +93,7 @@ class Comment(models.Model):
 #This is the model for our different sports available or supported in the venue
 class Sport(models.Model):
     sportName = models.CharField(max_length=100)
+    sportimage = models.ImageField(upload_to='static/images/sportimages/')
 
     def __str__(self):
         return self.sportName
@@ -104,6 +108,7 @@ class Sport(models.Model):
 class Lesson(models.Model):
     lessonName = models.CharField(max_length=100)
     lessonDescription = models.CharField(max_length=2000)
+    lessonimage = models.ImageField(upload_to='static/images/lessonimages/')
     lessonSport = models.ForeignKey(Sport, null=True, on_delete=models.CASCADE)
     lessonVenue = models.ForeignKey(Venue, null=True, on_delete=models.CASCADE)
     lessonFacility = models.ForeignKey(Facility, null=True, on_delete=models.CASCADE)
@@ -118,13 +123,15 @@ class Lesson(models.Model):
 class schedule(models.Model):
     scheduleVenue = models.ForeignKey(Venue, null=True, on_delete=models.CASCADE)
     scheduleDate = models.DateTimeField(auto_now_add=True)
+    eventName = models.CharField(max_length=100)
+    scheduleLesson = models.ForeignKey(Lesson, null=True, on_delete=models.CASCADE,related_name='lessons')
     scheduleFacility = models.ForeignKey(Facility, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.scheduleVenue
 
 
-class Bookings(models.Model):
+class Booking(models.Model):
     lessonBooked = models.ForeignKey(Lesson, null=True, on_delete=models.CASCADE,related_name='booked')
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
