@@ -51,7 +51,7 @@
     <p>If intrested clickthelink belowa lesson to register then proceed to cart.</p>
     <br>
 </div>
-<div class="basket-icon"><img src="/static/images/basket.png"></div>
+<a href="#chooselist"><div class="basket-icon"><span><strong class="number">0</strong></span><img src="/static/images/basket.png"></div></a>
 
 <div class="container-full">
     <br>
@@ -85,7 +85,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <ul class="chooselist">
+                    <ul id="chooselist" class="chooselist">
 
                     </ul>
                 </div>
@@ -109,17 +109,16 @@
             $(".zoom").remove();
         }, 1000);
         var clicked = $(this)
+        var basketNumber = $(".number").text()
+        // console.log(basketNumber)
+        $(".number").text(parseInt(basketNumber)+1)
         var lesson = $(this).closest("div").find('input')
-        console.log(lesson.val())
+        // console.log(lesson.val())
         $.get('/booking/'+lesson.val()+'',
         function(data){
-            var choosen = 0
             if(data.success){
                 clicked.css({"color":"green","border-color":"green"});
-                
-                // var basket = $(".basket-icon")
-                // choose += 1
-                // basket.text("1")
+                basketNumber.css({"color":"green"})
             }
         }
         );

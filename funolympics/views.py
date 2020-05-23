@@ -102,6 +102,7 @@ def booking(request,lesson_id):
     booking.save()
     return JsonResponse({'success':True,"lesson":lesson_id})
 
+@login_required
 def my_booking(request):
   if request.method == 'GET':
     user = request.user
@@ -109,3 +110,4 @@ def my_booking(request):
     data = {k:v for k, v in [(Lesson.objects.get(pk = i.lessonBooked_id).lessonName, Lesson.objects.get(pk = i.lessonBooked_id).lessonDescription) for i in my_lessons] }
     print(data)
     return JsonResponse({'success':True,"lessons":data})
+  
