@@ -118,7 +118,7 @@
         function(data){
             if(data.success){
                 clicked.css({"color":"green","border-color":"green"});
-                basketNumber.css({"color":"green"})
+                // basketNumber.css({"color":"green"})
             }
         }
         );
@@ -133,11 +133,13 @@
                 for (const [key, value] of Object.entries(data.lessons)) {
                     console.log(key, value);
                     $('.chooselist').html("<li><strong>"+key+"</strong>"+value+"</li>")
+                }
             }
+            else if(!data.success){
+                $('.chooselist').html("<li><strong>You are Required to login to  subsribe for lessons</strong></li>").css({"color":"red"})
             }
-        }
-        )
-    })
+        });
+    });
 
 </script>
 

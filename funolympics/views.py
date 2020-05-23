@@ -102,12 +102,13 @@ def booking(request,lesson_id):
     booking.save()
     return JsonResponse({'success':True,"lesson":lesson_id})
 
-@login_required
+
 def my_booking(request):
-  if request.method == 'GET':
+  if request.method == 'GET' and request.user in User.objects.all():
     user = request.user
     my_lessons = Booking.objects.filter(user = user).distinct('lessonBooked_id')
     data = {k:v for k, v in [(Lesson.objects.get(pk = i.lessonBooked_id).lessonName, Lesson.objects.get(pk = i.lessonBooked_id).lessonDescription) for i in my_lessons] }
     print(data)
     return JsonResponse({'success':True,"lessons":data})
+  return JsonResponse({'success':False})
   
