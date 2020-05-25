@@ -127,11 +127,11 @@ def schedules(request):
     '''
     View function that displays the blogs on the news page and all its contents.
     '''
-    schedule = schedule.objects.all()
+    schedules = schedule.objects.all()
     facility = Facility.objects.all()
     lesson = Lesson.objects.all()
     venue = Venue.objects.all()
-    return render(request, 'schedule.html',{"facility": facility, "lesson": lesson, "schedule": schedule, "venue": venue[::-1], })
+    return render(request, 'schedule.html',{"facility": facility, "lesson": lesson, "schedules": schedules  , "venue": venue[::-1], })
 
 def specific_blog(request,blog_id):
   sp_blog = blog = Blog.objects.filter(pk = blog_id).first()

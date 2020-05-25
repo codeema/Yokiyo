@@ -3,10 +3,60 @@
 {% block content %}
 {{block.super}}
 
-Venues
-Facilities
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3>Venues</h3>
+      <p>These are the venues available here</p>
+    </div>
+    {% if venue %}
+    {% for n in venue %}
+    <div class="col-sm-4">
+      <div class="card">
+        <img src="/{{n.venueimage}}" class="card-img-top" alt="...">
+        <div class="card-header">
+          <h5 class="card-title">{{n.venueName}}</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text"> Located at: <strong>{{n.venueLocation}}</strong> </p>
+        </div>
+        <div class="card-footer">
+          <p class="card-text"> Room Number: <strong>{{n.venueCapacity}}</strong> </p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+</div>
 
-{% if venue %}
-{% for n in blog %}
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3>Facilities</h3>
+      <p>These are the facilities available here</p>
+    </div>
+    {% if facility %}
+    {% for n in facility %}
+    <div class="col-sm-4">
+      <div class="card">
+        <img src="/{{n.facilityimage}}" class="card-img-top" alt="...">
+        <div class="card-header">
+          <h5 class="card-title">{{n.facilityName}}</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text"> Located at: <strong>{{n.facilityLocation}}</strong> </p>
+        </div>
+        <div class="card-footer">
+          <p class="card-text"> Room Number: <strong>{{n.facilityRoom}}</strong> </p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+</div>
 
 {% endblock %}
