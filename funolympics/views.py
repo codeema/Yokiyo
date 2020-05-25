@@ -12,6 +12,9 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect, JsonRespons
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.forms.models import model_to_dict
+from PIL import Image
+from django.conf.urls.static import static
+
 
 
 # Create your views here.
@@ -127,3 +130,4 @@ def specific_blog(request,blog_id):
   sp_blog = blog = Blog.objects.filter(pk = blog_id).first()
 
   return render(request,'specific-blog.html',{"blog":sp_blog})
+

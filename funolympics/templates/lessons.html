@@ -51,7 +51,9 @@
     <p>If intrested clickthelink belowa lesson to register then proceed to cart.</p>
     <br>
 </div>
-<a href="#chooselist"><div class="basket-icon"><span><strong class="number">0</strong></span><img src="/static/images/basket.png"></div></a>
+<a class="nav-item nav-link" data-toggle="modal" data-target="#cart" href="#">
+    <div class="basket-icon"><span><strong class="number">0</strong></span><img src="/static/images/basket.png"></div>
+</a>
 
 <div class="container-full">
     <br>
@@ -68,7 +70,7 @@
                     <p class="card-text">{{l.lessonSport}}</p>
                     <p class="card-text">{{l.lessonVenue}}</p>
                     <p class="card-text">{{l.lessonFacility}}</p>
-                    
+
                 </div>
                 <div class="card-footer basket">
                     <input type="hidden" class="lesson_id" value="{{l.pk}}">
@@ -80,23 +82,27 @@
     </div>
     <br>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <ul id="chooselist" class="chooselist">
 
-                    </ul>
-                </div>
+<!-- modal -->
+
+<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <ul id="chooselist" class="chooselist">
+
+                </ul>
+                <h6>Proceed to checkout</h6>
             </div>
         </div>
     </div>
 </div>
 
 
+
 <script>
-    'use strict'; 
+    'use strict';
 
     $("button").on("click", function () {
 
@@ -111,36 +117,42 @@
         var clicked = $(this)
         var basketNumber = $(".number").text()
         // console.log(basketNumber)
-        $(".number").text(parseInt(basketNumber)+1)
+        $(".number").text(parseInt(basketNumber) + 1)
         var lesson = $(this).closest("div").find('input')
         // console.log(lesson.val())
-        $.get('/booking/'+lesson.val()+'',
-        function(data){
-            if(data.success){
-                clicked.css({"color":"green","border-color":"green"});
-                // basketNumber.css({"color":"green"})
+        $.get('/booking/' + lesson.val() + '',
+            function (data) {
+                if (data.success) {
+                    clicked.css({
+                        "color": "green",
+                        "border-color": "green"
+                    });
+                    // basketNumber.css({"color":"green"})
+                }
             }
-        }
         );
     });
 
     $(".basket-icon").on("click", function () {
         $.get('/mybookings/',
-        function(data){
-            console.log(data)
-            if(data.success){
-                console.log(data.lessons)
-                for (const [key, value] of Object.entries(data.lessons)) {
-                    console.log(key, value);
-                    $('.chooselist').html("<li><strong>"+key+"</strong>"+value+"</li>")
+            function (data) {
+                console.log(data)
+                if (data.success) {
+                    console.log(data.lessons)
+                    for (const [key, value] of Object.entries(data.lessons)) {
+                        console.log(key, value);
+                        $('.chooselist').html(
+                            "<li>You have booked, <strong>" + key + "</strong><br> Description : " + value + "</li>")
+                    }
+                } else if (!data.success) {
+                    $('.chooselist').html(
+                            "<li><strong>You are Required to login to  subsribe for lessons</strong></li>")
+                        .css({
+                            "color": "red"
+                        })
                 }
-            }
-            else if(!data.success){
-                $('.chooselist').html("<li><strong>You are Required to login to  subsribe for lessons</strong></li>").css({"color":"red"})
-            }
-        });
+            });
     });
-
 </script>
 
 {% endblock %}
