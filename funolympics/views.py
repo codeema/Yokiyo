@@ -54,6 +54,7 @@ def profile(request):
 
 @login_required
 def post(request):
+  post_form = NewBlogForm(request.POST,request.FILES)
   if request.method == 'POST':
     post_form = NewBlogForm(request.POST,request.FILES)
     if post_form.is_valid():
@@ -61,7 +62,9 @@ def post(request):
       the_post.user = request.user
       the_post.venue = request.user.profile.venue
       the_post.save()
-  return render(request,'new-post.html')
+      return redirect('index')
+    return render(request,'new-post.html',{"post":post_form})
+  return render(request,'new-post.html',{"post":post_form})
 
 
 @login_required
