@@ -16,6 +16,7 @@ path('post/',main_views.post,name='post'),
 path('news/',main_views.news,name='news'),
 path('lesson/',main_views.subscription,name='lesson'),
 path('venue/',main_views.venues,name='venue'),
+path('sport/',main_views.sport,name='sport'),
 path('schedule/',main_views.schedules,name='schedule'),
 re_path(r'^comment/(?P<blog_id>\d+)$',main_views.commenting,name='commenting'),
 re_path(r'^booking/(?P<lesson_id>\d+)$',main_views.booking,name='booking'),
@@ -26,4 +27,4 @@ re_path(r'^index/blog/(?P<blog_id>\d+)$',main_views.specific_blog,name='specific
 # if settings.DEBUG:
 #   urlpatterns+= static(
 #     settings.MEDIA_URL, document_root = settings.MEDIA_ROOT
-#   )   
+#   )

@@ -137,3 +137,14 @@ def specific_blog(request,blog_id):
   sp_blog = blog = Blog.objects.filter(pk = blog_id).first()
 
   return render(request,'specific-blog.html',{"blog":sp_blog})
+
+def sport(request):
+    '''
+    View function that displays the sport images of offered sports
+    '''
+    blog = Blog.objects.all()
+    facility = Facility.objects.all()
+    sport = Sport.objects.all()
+    post_form = NewBlogForm()
+    comment_form = NewCommentForm()
+    return render(request, 'sports.html',{"comment_form":comment_form,"post":post_form,"facility": facility,"blog": blog[::-1], "sport": sport[::-1]} )
