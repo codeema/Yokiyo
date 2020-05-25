@@ -1,0 +1,36 @@
+{%extends "base.html"%}
+
+{% block content %}
+{{block.super}}
+
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3>Events</h3>
+      <p>These are the events scheduled here. More information to come</p>
+    </div>
+    {% if schedules %}
+    {% for n in schedules %}
+    <div class="col-sm-4">
+      <div class="card">
+        <img src="/{{n.scheduleLesson.lessonimage}}" class="card-img-top" alt="...">
+        <div class="card-header">
+          <h5 class="card-title">{{n.eventName}}</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text"> Located at: <strong>{{n.scheduleLesson}}</strong> </p>
+          <p class="card-text"> Located at: <strong>{{n.scheduleFacility}}</strong> </p>
+        </div>
+        <div class="card-footer">
+          <p class="card-text"> Room Number: <strong>{{n.scheduleFacility.facilityRoom}}</strong> </p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+
+{% endblock %}

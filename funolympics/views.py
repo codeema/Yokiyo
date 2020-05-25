@@ -126,8 +126,28 @@ def venues(request):
     venue = Venue.objects.all()
     return render(request, 'venues.html',{"facility": facility, "venue": venue[::-1], })
 
+def schedules(request):
+    '''
+    View function that displays the blogs on the news page and all its contents.
+    '''
+    schedules = schedule.objects.all()
+    facility = Facility.objects.all()
+    lesson = Lesson.objects.all()
+    venue = Venue.objects.all()
+    return render(request, 'schedule.html',{"facility": facility, "lesson": lesson, "schedules": schedules  , "venue": venue[::-1], })
+
 def specific_blog(request,blog_id):
   sp_blog = blog = Blog.objects.filter(pk = blog_id).first()
 
   return render(request,'specific-blog.html',{"blog":sp_blog})
 
+def sport(request):
+    '''
+    View function that displays the sport images of offered sports
+    '''
+    blog = Blog.objects.all()
+    facility = Facility.objects.all()
+    sport = Sport.objects.all()
+    post_form = NewBlogForm()
+    comment_form = NewCommentForm()
+    return render(request, 'sports.html',{"comment_form":comment_form,"post":post_form,"facility": facility,"blog": blog[::-1], "sport": sport[::-1]} )
