@@ -3,7 +3,7 @@ Fun Olympics is a web application that allows users to be in the loop of what is
 
 
 ## Features (User Stories)
-This app that allows users to post their neigb=hbourhood and see others posted by others.
+This app that allows users to
 
 - [x] A user can register their accounts and sign in.
 - [x] A user can read blogs on the home page.
@@ -12,8 +12,6 @@ This app that allows users to post their neigb=hbourhood and see others posted b
 - [x] Once signed in a user can see their facilities around different venues.
 - [x] Once signed in a user can see the different schedules of events in different facilities in the venue.
 - [x] Once signed in a user can comment on a blog post.
-
-- [x] Once signed in User can rate other neighbourhoods and businesses.
 
 ## Screenshot
 
