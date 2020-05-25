@@ -26,4 +26,4 @@ re_path(r'^index/blog/(?P<blog_id>\d+)$',main_views.specific_blog,name='specific
 # if settings.DEBUG:
 #   urlpatterns+= static(
 #     settings.MEDIA_URL, document_root = settings.MEDIA_ROOT
-#   )
+#   )   
