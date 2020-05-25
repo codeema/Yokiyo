@@ -1,0 +1,21 @@
+font-family: 'Quicksand', sans-serif;
+font-family: 'Raleway', sans-serif;
+
+.jumbotron.slider {
+    /* padding: 2rem 1rem; */
+    margin-bottom: 2rem;
+    background-color: #e9ecef;
+    border-radius: .3rem;
+}
+
+@media (min-width: 576px)
+.jumbotron#slider {
+    padding: 2rem 2rem;
+}
+
+.container-fluid {
+    width: 100%;
+    /* padding-right: 15px; */
+    /* padding-left: 15px; */
+    margin-right: auto;
+    margin-left: auto;

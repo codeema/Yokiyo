@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Profile, Blog, Facility, Lesson, Sport, Comment,Booking
+from .models import Profile, Blog, Facility, Lesson, Sport, Comment,Booking, schedule, Venue
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
@@ -115,10 +115,15 @@ def my_booking(request):
     return JsonResponse({'success':True,"lessons":data})
   return JsonResponse({'success':False})
 
+def venues(request):
+    '''
+    View function that displays the blogs on the news page and all its contents.
+    '''
+    facility = Facility.objects.all()
+    venue = Venue.objects.all()
+    return render(request, 'venues.html',{"facility": facility, "venue": venue[::-1], })
 
 def specific_blog(request,blog_id):
   sp_blog = blog = Blog.objects.filter(pk = blog_id).first()
 
   return render(request,'specific-blog.html',{"blog":sp_blog})
-
-  
