@@ -1,0 +1,39 @@
+{%extends 'base.html'%}
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-8  pt-3">
+      <img src="/{{blog.blogimage.url}}" alt="img" class="img-responsive card-img-top" style="height: 80vh;">
+    </div>
+    <div class="col-md-3 mt-3 pt-3 bord"> 
+      <div>
+        <div>
+          <p class="text-monospace ml-3 pt-2"><small><strong>{{blog.user.username}}</strong></small></p>
+          <p class="text-monospace ml-3"><small>{{blog.title|upper}}</small></p>
+        </div>
+        <hr>
+        <hr>
+      </div>
+      <div id="side">
+        {% if blog.all_comments %}
+        {% for comment in blog.all_comments %}
+        <div class="flex ">
+
+          <div>
+            <p class="ml-2"><span class="font-weight-bold">{{comment.user.username}}</span> {{comment.status}}</p>
+          </div>
+        </div>
+        <hr>
+        {% endfor %}
+        {% else %}
+      </div>
+      <h6 class="text-centee">No comments yet...comment bellow</h6>
+      {% endif %}
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+
+{% endblock %}

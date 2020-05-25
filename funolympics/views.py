@@ -114,4 +114,11 @@ def my_booking(request):
     print(data)
     return JsonResponse({'success':True,"lessons":data})
   return JsonResponse({'success':False})
+
+
+def specific_blog(request,blog_id):
+  sp_blog = blog = Blog.objects.filter(pk = blog_id).first()
+
+  return render(request,'specific-blog.html',{"blog":sp_blog})
+
   
