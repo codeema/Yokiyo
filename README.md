@@ -41,7 +41,7 @@ This is a step by step series of instruction that will tell you how to get a dev
 
 - [ ] Cloning the repository from the link. Open terminal and run the following command.
 ```
-git clone https://github.com/hillarydalie/jiraniwatch.git
+git clone https://github.com/codeema/Yokiyo.git
 ```
 - [ ] When the cloning is complete, enter to the folder cloned by running this command.
 
