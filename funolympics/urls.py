@@ -20,6 +20,7 @@ path('venue/',main_views.venues,name='venue'),
 re_path(r'^comment/(?P<blog_id>\d+)$',main_views.commenting,name='commenting'),
 re_path(r'^booking/(?P<lesson_id>\d+)$',main_views.booking,name='booking'),
 path('mybookings/',main_views.my_booking,name='my_bookings'),
+re_path(r'^index/blog/(?P<blog_id>\d+)$',main_views.specific_blog,name='specific_blog'),
 ]
 
 # if settings.DEBUG:

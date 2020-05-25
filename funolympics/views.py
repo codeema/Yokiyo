@@ -115,8 +115,6 @@ def my_booking(request):
     return JsonResponse({'success':True,"lessons":data})
   return JsonResponse({'success':False})
 
-
-
 def venues(request):
     '''
     View function that displays the blogs on the news page and all its contents.
@@ -124,3 +122,8 @@ def venues(request):
     facility = Facility.objects.all()
     venue = Venue.objects.all()
     return render(request, 'venues.html',{"facility": facility, "venue": venue[::-1], })
+
+def specific_blog(request,blog_id):
+  sp_blog = blog = Blog.objects.filter(pk = blog_id).first()
+
+  return render(request,'specific-blog.html',{"blog":sp_blog})
