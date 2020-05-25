@@ -14,7 +14,7 @@
     {% for n in venue %}
     <div class="col-sm-4">
       <div class="card">
-        <img src="/{{n.venueimage}}" class="card-img-top" alt="...">
+        <img src="/{{n.venueimage.url}}" class="card-img-top" alt="...">
         <div class="card-header">
           <h5 class="card-title">{{n.venueName}}</h5>
         </div>
@@ -42,7 +42,7 @@
     {% for n in facility %}
     <div class="col-sm-4">
       <div class="card">
-        <img src="/{{n.facilityimage}}" class="card-img-top" alt="...">
+        <img src="/{{n.facilityimage.url}}" class="card-img-top" alt="...">
         <div class="card-header">
           <h5 class="card-title">{{n.facilityName}}</h5>
         </div>
