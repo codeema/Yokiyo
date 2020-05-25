@@ -17,7 +17,9 @@ This app that allows users to post their neigb=hbourhood and see others posted b
 
 ## Screenshot
 
-![A screenshot of the app page](https://github.com/Hillarydalie/jiraniwatch/blob/master/static/images/jirani.png "App Page")
+![A screenshot of the app page](https://github.com/codeema/Yokiyo/blob/master/static/screenshot/yokiyo%20backend.png "App Page")
+![A screenshot of the app page](https://github.com/codeema/Yokiyo/blob/master/static/screenshot/yokiyo.png "App Page")
+![A screenshot of the app page](https://github.com/codeema/Yokiyo/blob/master/static/screenshot/yokiyo2.png"App Page")
 
 ## Getting Started
 
