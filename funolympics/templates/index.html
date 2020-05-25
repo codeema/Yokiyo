@@ -60,7 +60,7 @@
     <div class="col-md-12 text-center">
       <h3>FACILITIES</h3>
     </div>
-    {% for facilitydisplay in facility %}
+    {% for facilitydisplay in facility| slice:"3" %}
     <div class="col-sm-4">
       <div class="card">
         <img src="{{facilitydisplay.facilityimage.url}}" class="card-img-top" alt="...">
@@ -86,7 +86,8 @@
       <h3>BLOG</h3>
     </div>
     {% if blog %}
-    {% for n in blog %}
+    {% for n in blog| slice:"3" %}
+    <!-- {% for comment in n.all_comments|slice:"2" %} -->
     <div class="col-sm-4 blogs">
       <a href="{% url 'specific_blog' blog_id=n.id %}">
       <div class="card">
